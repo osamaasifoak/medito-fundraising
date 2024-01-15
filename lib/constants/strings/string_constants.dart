@@ -4,6 +4,7 @@ class StringConstants {
   static const String share = 'Share';
   static const String qAndA = 'Q&A';
   static const String rewards = 'Rewards';
+  static const String amountRaised = 'Amount Raised';
   static const String campaignTitle = 'Medito Fundraising';
   static const String campaignDescription = """Title and Description:
 A clear and adjustable title that can be set to reflect the current fundraising goal (e.g., "Create Ad Campaign in the Tram").

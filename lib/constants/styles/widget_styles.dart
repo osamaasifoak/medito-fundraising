@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:meditofundraising/utils/responsive_utils.dart';
 
 const String materialIcons = 'MaterialIcons';
 const String dmMono = 'DM Mono';
@@ -6,6 +7,10 @@ const String dmSans = 'DM Sans';
 const padding12 = 12.0;
 const padding16 = 16.0;
 const padding20 = 20.0;
+const fontSize24 = 24.0;
+const fontSize22 = 22.0;
+const fontSize20 = 20.0;
+const fontSize18 = 18.0;
 const fontSize16 = 16.0;
 const fontSize14 = 14.0;
 const minTabletSize = 850;
@@ -23,3 +28,25 @@ const width12 = SizedBox(width: 12);
 const width8 = SizedBox(width: 8);
 const width4 = SizedBox(width: 4);
 const width2 = SizedBox(width: 2);
+
+double getDefaultTitleFontSize(BuildContext context) {
+  if (Responsive.isMobile(context)) {
+    return fontSize16;
+  } else if (Responsive.isTablet(context)) {
+    return fontSize20;
+  } else if (Responsive.isDesktop(context)) {
+    return fontSize24;
+  }
+  return fontSize24;
+}
+
+double getDefaultBodyFontSize(BuildContext context) {
+  if (Responsive.isMobile(context)) {
+    return fontSize14;
+  } else if (Responsive.isTablet(context)) {
+    return fontSize16;
+  } else if (Responsive.isDesktop(context)) {
+    return fontSize18;
+  }
+  return fontSize18;
+}
