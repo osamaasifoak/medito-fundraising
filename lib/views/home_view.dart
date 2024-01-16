@@ -10,19 +10,28 @@ class HomeView extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       body: SingleChildScrollView(
-        padding: const EdgeInsets.only(bottom: padding16),
         child: Column(
           children: [
-            const HeaderWidget(),
-            _buildCampaignAndFundraising(context),
-            if (Responsive.isMobile(context)) _buildRecentDonationsWidget(),
-            if (Responsive.isMobile(context))
-              Column(
+            Padding(
+              padding: const EdgeInsets.only(bottom: padding16),
+              child: Column(
                 children: [
+                  const HeaderWidget(),
+                  _buildCampaignAndFundraising(context),
+                  if (Responsive.isMobile(context))
+                    _buildRecentDonationsWidget(),
+                  if (Responsive.isMobile(context))
+                    Column(
+                      children: [
+                        height16,
+                        _buildFAQ(),
+                      ],
+                    ),
                   height16,
-                  _buildFAQ(),
                 ],
-              )
+              ),
+            ),
+            FooterWidget(),
           ],
         ),
       ),
@@ -49,6 +58,10 @@ class HomeView extends StatelessWidget {
                 _buildCampaign(),
                 if (Responsive.isDesktop(context) ||
                     Responsive.isTablet(context))
+                  _buildRecentDonationsWidget(),
+                height16,
+                if (Responsive.isDesktop(context) ||
+                    Responsive.isTablet(context))
                   _buildFAQ(),
               ],
             ),
@@ -56,14 +69,7 @@ class HomeView extends StatelessWidget {
           Flexible(
             child: SizedBox(
               width: MediaQuery.of(context).size.width * 0.3,
-              child: Column(
-                children: [
-                  _buildFundRaisingProgress(),
-                  if (Responsive.isDesktop(context) ||
-                      Responsive.isTablet(context))
-                    _buildRecentDonationsWidget()
-                ],
-              ),
+              child: _buildFundRaisingProgress(),
             ),
           ),
         ],

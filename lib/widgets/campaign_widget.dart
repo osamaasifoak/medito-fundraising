@@ -21,7 +21,8 @@ class CampaignWidget extends StatelessWidget {
         letterSpacing: -0.3);
 
     return Padding(
-      padding: const EdgeInsets.all(padding16),
+      padding: const EdgeInsets.symmetric(
+          horizontal: padding16, vertical: padding16),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
@@ -29,7 +30,7 @@ class CampaignWidget extends StatelessWidget {
             title,
             style: titleStyle,
           ),
-          const SizedBox(height: 10.0),
+          height8,
           Text(
             description,
             style: bodyStyle,
