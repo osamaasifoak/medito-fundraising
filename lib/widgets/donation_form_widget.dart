@@ -51,6 +51,7 @@ class _DonationFormWidgetState extends ConsumerState<DonationFormWidget>
           height12,
           _buildFieldTitle(StringConstants.enterDonationAmount),
           Row(
+            crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               Flexible(
                 child: TextFormField(

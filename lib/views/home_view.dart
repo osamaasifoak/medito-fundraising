@@ -9,14 +9,24 @@ class HomeView extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        body: SingleChildScrollView(
-      child: Column(
-        children: [
-          const HeaderWidget(),
-          _buildCampaignAndFundraising(context),
-        ],
+      body: SingleChildScrollView(
+        padding: const EdgeInsets.only(bottom: padding16),
+        child: Column(
+          children: [
+            const HeaderWidget(),
+            _buildCampaignAndFundraising(context),
+            if (Responsive.isMobile(context)) _buildRecentDonationsWidget(),
+            if (Responsive.isMobile(context))
+              Column(
+                children: [
+                  height16,
+                  _buildFAQ(),
+                ],
+              )
+          ],
+        ),
       ),
-    ));
+    );
   }
 
   Widget _buildCampaignAndFundraising(BuildContext context) {
@@ -30,12 +40,30 @@ class HomeView extends StatelessWidget {
     } else {
       return Row(
         crossAxisAlignment: CrossAxisAlignment.start,
+        mainAxisAlignment: MainAxisAlignment.center,
         children: [
           Flexible(
-            child: _buildCampaign(),
+            child: Column(
+              children: [
+                _buildCampaign(),
+                if (Responsive.isDesktop(context) ||
+                    Responsive.isTablet(context))
+                  _buildFAQ(),
+              ],
+            ),
           ),
           Flexible(
-            child: _buildFundRaisingProgress(),
+            child: SizedBox(
+              width: MediaQuery.of(context).size.width * 0.2,
+              child: Column(
+                children: [
+                  _buildFundRaisingProgress(),
+                  if (Responsive.isDesktop(context) ||
+                      Responsive.isTablet(context))
+                    _buildRecentDonationsWidget()
+                ],
+              ),
+            ),
           ),
         ],
       );
@@ -46,7 +74,7 @@ class HomeView extends StatelessWidget {
     return Container(
       decoration: BoxDecoration(
         color: ColorConstants.onyx,
-        borderRadius: BorderRadius.circular(10.0),
+        borderRadius: BorderRadius.circular(borderRadius10),
       ),
       margin: const EdgeInsets.all(padding16),
       padding: const EdgeInsets.all(padding16),
@@ -65,4 +93,13 @@ class HomeView extends StatelessWidget {
       description: StringConstants.campaignDescription,
     );
   }
+
+  FAQListWidget _buildFAQ() {
+    return FAQListWidget();
+  }
+
+  Padding _buildRecentDonationsWidget() => const Padding(
+        padding: EdgeInsets.symmetric(horizontal: padding16),
+        child: RecentDonationsWidget(),
+      );
 }

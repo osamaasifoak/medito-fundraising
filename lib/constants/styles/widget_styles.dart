@@ -6,6 +6,7 @@ const String materialIcons = 'MaterialIcons';
 const String dmMono = 'DM Mono';
 const String dmSans = 'DM Sans';
 const borderRadius14 = 14.0;
+const borderRadius10 = 10.0;
 const minTabletSize = 850;
 const maxTabletSize = 1100;
 const padding8 = 8.0;
@@ -33,6 +34,7 @@ const width4 = SizedBox(width: 4);
 const width2 = SizedBox(width: 2);
 
 const outlineBorder = OutlineInputBorder(
+  borderSide: BorderSide.none,
   borderRadius: BorderRadius.all(
     Radius.circular(borderRadius14),
   ),
@@ -45,6 +47,7 @@ InputDecoration inputDecoration({String? label, String? hintText}) =>
       labelStyle: const TextStyle(
           fontFamily: dmSans, color: ColorConstants.walterWhite),
       filled: true,
+      fillColor: ColorConstants.ebony,
       border: InputBorder.none,
       enabledBorder: outlineBorder,
       focusedBorder: outlineBorder,

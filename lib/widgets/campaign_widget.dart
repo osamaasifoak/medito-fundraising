@@ -1,5 +1,3 @@
-// fundraising_info_widget.dart
-
 import 'package:flutter/material.dart';
 import 'package:meditofundraising/constants/colors/color_constants.dart';
 import 'package:meditofundraising/constants/styles/widget_styles.dart';
@@ -14,11 +12,11 @@ class CampaignWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     var titleStyle = Theme.of(context).textTheme.displayLarge?.copyWith(
-          fontSize: _getTitleFontSize(context),
+          fontSize: getDefaultTitleFontSize(context),
           color: Colors.white,
         );
     var bodyStyle = Theme.of(context).textTheme.bodyLarge?.copyWith(
-        fontSize: _getDescriptionFontSize(context),
+        fontSize: getDefaultBodyFontSize(context),
         color: ColorConstants.graphite,
         letterSpacing: -0.3);
 
@@ -39,17 +37,5 @@ class CampaignWidget extends StatelessWidget {
         ],
       ),
     );
-  }
-
-  double _getTitleFontSize(BuildContext context) {
-    return MediaQuery.of(context).size.width > minTabletSize
-        ? fontSize24
-        : fontSize20;
-  }
-
-  double _getDescriptionFontSize(BuildContext context) {
-    return MediaQuery.of(context).size.width > minTabletSize
-        ? fontSize18
-        : fontSize16;
   }
 }
