@@ -1,7 +1,7 @@
 # Medito Fundraising
 
 A Flutter web app for the Medito Fundraising
-######  [Demo](https://40bbbf27.medito-fundraising-e3m.pages.dev/)
+####  [Demo](https://40bbbf27.medito-fundraising-e3m.pages.dev/)
 
 ![sample](app-preview.png)
 
@@ -80,4 +80,5 @@ This directory contains the provider classes that are provided in `main.dart`. T
 This directory contains widgets used to construct the the screen of the app.
 
 ## Deployment
-* [Link 1](https://hrishikeshpathak.com/blog/flutter-web-hosting-cloudflare/)
+* [Article](https://hrishikeshpathak.com/blog/flutter-web-hosting-cloudflare/)
+* [Youtube link](https://www.youtube.com/watch?v=-FRDk9D_H8I)
