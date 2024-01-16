@@ -42,8 +42,22 @@ class HomeView extends StatelessWidget {
     }
   }
 
-  FundraisingProgressWidget _buildFundRaisingProgress() =>
-      const FundraisingProgressWidget();
+  Container _buildFundRaisingProgress() {
+    return Container(
+      decoration: BoxDecoration(
+        color: ColorConstants.onyx,
+        borderRadius: BorderRadius.circular(10.0),
+      ),
+      margin: const EdgeInsets.all(padding16),
+      padding: const EdgeInsets.all(padding16),
+      child: const Column(
+        children: [
+          FundraisingProgressWidget(),
+          DonationFormWidget(),
+        ],
+      ),
+    );
+  }
 
   CampaignWidget _buildCampaign() {
     return const CampaignWidget(

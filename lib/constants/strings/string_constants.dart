@@ -4,8 +4,18 @@ class StringConstants {
   static const String share = 'Share';
   static const String qAndA = 'Q&A';
   static const String rewards = 'Rewards';
+  static const String donateNow = 'Donate Now';
   static const String amountRaised = 'Amount Raised';
   static const String campaignTitle = 'Medito Fundraising';
+  static const String enterYourName = 'Enter your name';
+  static const String enterYourEmail = 'Enter your email';
+  static const String enterDonationAmount = 'Enter donation amount';
+  static const String messageToCommunity = 'Message to community';
+  static const String enterValidAmount = 'Please enter a valid amount';
+  static const String enterValidNumber = 'Please enter a valid number';
+  static const String invalidEmail = 'Invalid Email.';
+  static const String fieldRequired = 'Field is Required';
+  static const String invalidInput = 'Invalid Input';
   static const String campaignDescription = """Title and Description:
 A clear and adjustable title that can be set to reflect the current fundraising goal (e.g., "Create Ad Campaign in the Tram").
 A brief description that contextualizes the fundraising initiative.

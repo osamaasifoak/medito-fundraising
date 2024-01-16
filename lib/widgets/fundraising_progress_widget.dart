@@ -31,44 +31,40 @@ class _FundraisingProgressWidgetState extends State<FundraisingProgressWidget>
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-      decoration: BoxDecoration(
-        color: ColorConstants.onyx,
-        borderRadius: BorderRadius.circular(10.0),
-      ),
-      margin: const EdgeInsets.all(padding16),
-      padding: const EdgeInsets.all(padding16),
-      child: Column(
-        crossAxisAlignment: CrossAxisAlignment.center,
-        children: [
-          const Text(
-            StringConstants.amountRaised,
-            style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
-          ),
-          const SizedBox(height: 8),
-          Text(
-            '${amountRaised.toStringAsFixed(2)} \$  / ${goalAmount.toStringAsFixed(2)} \$',
-            style: TextStyle(
-                fontSize: getDefaultBodyFontSize(context),
-                fontWeight: FontWeight.bold),
-          ),
-          height16,
-          LinearProgressIndicator(
+    return Column(
+      crossAxisAlignment: CrossAxisAlignment.center,
+      children: [
+        const Text(
+          StringConstants.amountRaised,
+          style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
+        ),
+        const SizedBox(height: 8),
+        Text(
+          '${amountRaised.toStringAsFixed(2)} \$ / ${goalAmount.toStringAsFixed(2)} \$',
+          style: TextStyle(
+              fontSize: getDefaultBodyFontSize(context),
+              fontWeight: FontWeight.bold),
+        ),
+        height16,
+        ClipRRect(
+          borderRadius: BorderRadius.circular(borderRadius14),
+          child: LinearProgressIndicator(
+            minHeight: 10,
             value: _progressAnimation.value,
             backgroundColor: Colors.grey[300],
             valueColor: const AlwaysStoppedAnimation<Color>(
               ColorConstants.lightPurple,
             ),
           ),
-          const SizedBox(height: 8),
-          Text(
-            '${(_progressAnimation.value * 100).toStringAsFixed(2)}%',
-            style: TextStyle(
-                fontSize: getDefaultBodyFontSize(context),
-                fontWeight: FontWeight.bold),
-          ),
-        ],
-      ),
+        ),
+        const SizedBox(height: 8),
+        Text(
+          '${(_progressAnimation.value * 100).toStringAsFixed(2)}%',
+          style: TextStyle(
+              fontSize: getDefaultBodyFontSize(context),
+              fontWeight: FontWeight.bold),
+        ),
+      ],
     );
   }
 
