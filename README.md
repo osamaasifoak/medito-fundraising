@@ -1,6 +1,8 @@
 # Medito Fundraising
 
 A Flutter web app for the Medito Fundraising
+######  [Demo](https://40bbbf27.medito-fundraising-e3m.pages.dev/)
+
 ![sample](app-preview.png)
 
 ## How to run
