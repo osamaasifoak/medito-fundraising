@@ -1,8 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_svg/svg.dart';
 import 'package:meditofundraising/constants/constants.dart';
-import 'package:meditofundraising/constants/strings/string_constants.dart';
-import 'package:meditofundraising/constants/styles/widget_styles.dart';
+import 'package:meditofundraising/utils/responsive_utils.dart';
 import 'package:meditofundraising/widgets/widgets.dart';
 
 class HomeView extends StatelessWidget {
@@ -11,32 +9,104 @@ class HomeView extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        drawer: _buildDrawer(context),
-        body: Column(
+      body: SingleChildScrollView(
+        child: Column(
           children: [
-            _buildHeader(context),
-            const CampaignWidget(
-              title: StringConstants.campaignTitle,
-              description: StringConstants.campaignDescription,
-            )
-          ],
-        ));
-  }
-
-  Widget _buildHeader(BuildContext context) {
-    return MediaQuery.of(context).size.width > minTabletSize
-        ? const HeaderWidget()
-        : AppBar(
-            title: SvgPicture.asset(
-              AssetConstants.icMedito,
-              height: 30,
+            Padding(
+              padding: const EdgeInsets.only(bottom: padding16),
+              child: Column(
+                children: [
+                  const HeaderWidget(),
+                  _buildCampaignAndFundraising(context),
+                  if (Responsive.isMobile(context))
+                    _buildRecentDonationsWidget(),
+                  if (Responsive.isMobile(context))
+                    Column(
+                      children: [
+                        height16,
+                        _buildFAQ(),
+                      ],
+                    ),
+                  height16,
+                ],
+              ),
             ),
-          );
+            FooterWidget(),
+          ],
+        ),
+      ),
+    );
   }
 
-  Widget _buildDrawer(BuildContext context) {
-    return MediaQuery.of(context).size.width < minTabletSize
-        ? const DrawerWidget()
-        : const SizedBox();
+  Widget _buildCampaignAndFundraising(BuildContext context) {
+    if (Responsive.isMobile(context)) {
+      return Column(
+        children: [
+          _buildCampaign(),
+          _buildFundRaisingProgress(),
+        ],
+      );
+    } else {
+      return Row(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        mainAxisAlignment: MainAxisAlignment.center,
+        children: [
+          Flexible(
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                _buildCampaign(),
+                if (Responsive.isDesktop(context) ||
+                    Responsive.isTablet(context))
+                  _buildRecentDonationsWidget(),
+                height16,
+                if (Responsive.isDesktop(context) ||
+                    Responsive.isTablet(context))
+                  _buildFAQ(),
+              ],
+            ),
+          ),
+          Flexible(
+            child: SizedBox(
+              width: MediaQuery.of(context).size.width * 0.3,
+              child: _buildFundRaisingProgress(),
+            ),
+          ),
+        ],
+      );
+    }
   }
+
+  Container _buildFundRaisingProgress() {
+    return Container(
+      decoration: BoxDecoration(
+        color: ColorConstants.onyx,
+        borderRadius: BorderRadius.circular(borderRadius10),
+      ),
+      margin: const EdgeInsets.all(padding16),
+      padding: const EdgeInsets.all(padding16),
+      child: const Column(
+        children: [
+          FundraisingProgressWidget(),
+          DonationFormWidget(),
+        ],
+      ),
+    );
+  }
+
+  CampaignWidget _buildCampaign() {
+    return const CampaignWidget(
+      title: StringConstants.campaignTitle,
+      description: StringConstants.campaignDescription,
+    );
+  }
+
+  FAQListWidget _buildFAQ() {
+    return FAQListWidget();
+  }
+
+  Padding _buildRecentDonationsWidget() => const Padding(
+        padding: EdgeInsets.symmetric(horizontal: padding16),
+        child: RecentDonationsWidget(),
+      );
 }

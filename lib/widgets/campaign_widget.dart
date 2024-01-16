@@ -1,7 +1,5 @@
-// fundraising_info_widget.dart
-
 import 'package:flutter/material.dart';
-import 'package:meditofundraising/constants/constants.dart';
+import 'package:meditofundraising/constants/colors/color_constants.dart';
 import 'package:meditofundraising/constants/styles/widget_styles.dart';
 
 class CampaignWidget extends StatelessWidget {
@@ -13,41 +11,32 @@ class CampaignWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-      padding: const EdgeInsets.all(padding16),
-      decoration: BoxDecoration(
-        color: ColorConstants.onyx,
-        borderRadius: BorderRadius.circular(10.0),
-      ),
+    var titleStyle = Theme.of(context).textTheme.displayLarge?.copyWith(
+          fontSize: getDefaultTitleFontSize(context),
+          color: Colors.white,
+        );
+    var bodyStyle = Theme.of(context).textTheme.bodyLarge?.copyWith(
+        fontSize: getDefaultBodyFontSize(context),
+        color: ColorConstants.graphite,
+        letterSpacing: -0.3);
+
+    return Padding(
+      padding: const EdgeInsets.symmetric(
+          horizontal: padding16, vertical: padding16),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           Text(
             title,
-            style: TextStyle(
-              fontSize: _getTitleFontSize(context),
-              fontWeight: FontWeight.bold,
-              color: Colors.white,
-            ),
+            style: titleStyle,
           ),
-          const SizedBox(height: 10.0),
+          height8,
           Text(
             description,
-            style: TextStyle(
-              fontSize: _getDescriptionFontSize(context),
-              color: Colors.white, // Adjust color based on your design
-            ),
+            style: bodyStyle,
           ),
         ],
       ),
     );
-  }
-
-  double _getTitleFontSize(BuildContext context) {
-    return MediaQuery.of(context).size.width > minTabletSize ? 24.0 : 20.0;
-  }
-
-  double _getDescriptionFontSize(BuildContext context) {
-    return MediaQuery.of(context).size.width > minTabletSize ? 18.0 : 16.0;
   }
 }
