@@ -30,20 +30,28 @@ class _FundraisingProgressWidgetState extends State<FundraisingProgressWidget>
   }
 
   @override
+  void dispose() {
+    _animationController.dispose();
+    super.dispose();
+  }
+
+  @override
   Widget build(BuildContext context) {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.center,
       children: [
         const Text(
           StringConstants.amountRaised,
-          style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
+          style: TextStyle(
+              fontSize: 18, fontWeight: FontWeight.bold, fontFamily: dmSans),
         ),
         const SizedBox(height: 8),
         Text(
           '${amountRaised.toStringAsFixed(2)} \$ / ${goalAmount.toStringAsFixed(2)} \$',
           style: TextStyle(
               fontSize: getDefaultBodyFontSize(context),
-              fontWeight: FontWeight.bold),
+              fontWeight: FontWeight.bold,
+              fontFamily: dmSans),
         ),
         height16,
         ClipRRect(
@@ -62,15 +70,10 @@ class _FundraisingProgressWidgetState extends State<FundraisingProgressWidget>
           '${(_progressAnimation.value * 100).toStringAsFixed(2)}%',
           style: TextStyle(
               fontSize: getDefaultBodyFontSize(context),
-              fontWeight: FontWeight.bold),
+              fontWeight: FontWeight.bold,
+              fontFamily: dmSans),
         ),
       ],
     );
-  }
-
-  @override
-  void dispose() {
-    _animationController.dispose();
-    super.dispose();
   }
 }

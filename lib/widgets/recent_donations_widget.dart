@@ -91,48 +91,60 @@ class _RecentDonationsWidgetState extends State<RecentDonationsWidget> {
         ),
         height12,
         Container(
-          height: 500,
+          height: 300,
           decoration: BoxDecoration(
             color: ColorConstants.onyx,
             borderRadius: BorderRadius.circular(borderRadius10),
           ),
-          child: ListView.builder(
-            controller: _scrollController,
-            itemCount: recentDonations.length,
-            physics: const AlwaysScrollableScrollPhysics(),
-            padding: const EdgeInsets.symmetric(
-              vertical: padding16,
-              horizontal: padding16,
+          child: ScrollConfiguration(
+            behavior:
+                ScrollConfiguration.of(context).copyWith(scrollbars: false),
+            child: ListView.builder(
+              controller: _scrollController,
+              itemCount: recentDonations.length,
+              physics: const NeverScrollableScrollPhysics(),
+              padding: const EdgeInsets.symmetric(
+                vertical: padding16,
+                horizontal: padding16,
+              ),
+              itemBuilder: (context, index) {
+                final donation = recentDonations[index];
+                return _buildDonorCard(donation, titleStyle, bodyStyle);
+              },
             ),
-            itemBuilder: (context, index) {
-              final donation = recentDonations[index];
-              return Container(
-                decoration: BoxDecoration(
-                  color: ColorConstants.ebony,
-                  borderRadius: BorderRadius.circular(borderRadius10),
-                ),
-                margin: const EdgeInsets.only(bottom: padding12),
-                padding: const EdgeInsets.symmetric(
-                    vertical: padding8, horizontal: padding16),
-                child: ListTile(
-                  contentPadding: EdgeInsets.zero,
-                  title: Text(
-                    '${donation.donor} donated ${donation.amount}',
-                    style: titleStyle?.copyWith(
-                        color: ColorConstants.lightPurple,
-                        fontSize: fontSize16),
-                  ),
-                  subtitle: _getSubtitle(donation, bodyStyle),
-                ),
-              );
-            },
           ),
         ),
       ],
     );
   }
 
-  Widget? _getSubtitle(RecentDonation donation, TextStyle? bodyStyle) {
+  Container _buildDonorCard(
+      RecentDonation donation, TextStyle? titleStyle, TextStyle? bodyStyle) {
+    return Container(
+      decoration: BoxDecoration(
+        color: ColorConstants.ebony,
+        borderRadius: BorderRadius.circular(borderRadius10),
+      ),
+      margin: const EdgeInsets.only(bottom: padding12),
+      padding:
+          const EdgeInsets.symmetric(vertical: padding8, horizontal: padding16),
+      child: ListTile(
+        contentPadding: EdgeInsets.zero,
+        title: _buildTitle(donation, titleStyle),
+        subtitle: _buildSubtitle(donation, bodyStyle),
+      ),
+    );
+  }
+
+  Text _buildTitle(RecentDonation donation, TextStyle? titleStyle) {
+    return Text(
+      '${donation.donor} donated ${donation.amount}',
+      style: titleStyle?.copyWith(
+          color: ColorConstants.lightPurple, fontSize: fontSize16),
+    );
+  }
+
+  Widget? _buildSubtitle(RecentDonation donation, TextStyle? bodyStyle) {
     if (donation.message == null) {
       return null;
     }

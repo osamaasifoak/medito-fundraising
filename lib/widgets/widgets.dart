@@ -6,3 +6,4 @@ export 'donation_form_widget.dart';
 export 'loading_button_widget.dart';
 export 'recent_donations_widget.dart';
 export 'faq/faq_widget.dart';
+export 'reward_section_widget.dart';

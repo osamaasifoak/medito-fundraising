@@ -75,6 +75,8 @@ class _DonationFormWidgetState extends ConsumerState<DonationFormWidget>
             maxLines: 4,
             onChanged: _handleMessageChanged,
           ),
+          height16,
+          RewardsSectionWidget(),
           height24,
           LoadingButtonWidget(
             btnText: StringConstants.donateNow,
@@ -102,7 +104,12 @@ class _DonationFormWidgetState extends ConsumerState<DonationFormWidget>
   Padding _buildFieldTitle(String title) {
     return Padding(
       padding: const EdgeInsets.only(left: padding12, bottom: padding8),
-      child: Text(title),
+      child: Text(
+        title,
+        style: const TextStyle(
+          fontFamily: dmSans,
+        ),
+      ),
     );
   }
 
@@ -111,7 +118,7 @@ class _DonationFormWidgetState extends ConsumerState<DonationFormWidget>
       decoration: BoxDecoration(
           borderRadius: BorderRadius.circular(borderRadius14),
           color: ColorConstants.ebony),
-      padding: const EdgeInsets.symmetric(vertical: 3, horizontal: padding8),
+      padding: const EdgeInsets.symmetric(vertical: 2, horizontal: padding8),
       child: DropdownButton(
         value: selectedCurrency,
         borderRadius: BorderRadius.circular(borderRadius14),

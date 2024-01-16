@@ -44,6 +44,7 @@ class HomeView extends StatelessWidget {
         children: [
           Flexible(
             child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 _buildCampaign(),
                 if (Responsive.isDesktop(context) ||
@@ -54,7 +55,7 @@ class HomeView extends StatelessWidget {
           ),
           Flexible(
             child: SizedBox(
-              width: MediaQuery.of(context).size.width * 0.2,
+              width: MediaQuery.of(context).size.width * 0.3,
               child: Column(
                 children: [
                   _buildFundRaisingProgress(),

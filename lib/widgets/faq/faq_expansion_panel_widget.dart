@@ -18,9 +18,9 @@ class _FAQExpansionPanelWidgetState extends State<FAQExpansionPanelWidget> {
   @override
   Widget build(BuildContext context) {
     var bodyStyle = Theme.of(context).textTheme.bodyLarge?.copyWith(
-        fontSize: getDefaultBodyFontSize(context),
-        color: ColorConstants.walterWhite,
-        letterSpacing: 0.5);
+          fontSize: getDefaultBodyFontSize(context),
+          color: ColorConstants.walterWhite,
+        );
 
     return ExpansionPanelList(
       elevation: 1,
@@ -45,7 +45,7 @@ class _FAQExpansionPanelWidgetState extends State<FAQExpansionPanelWidget> {
             );
           },
           body: Container(
-            color: ColorConstants.lightPurple,
+            color: ColorConstants.ebony,
             child: Row(
               children: [
                 Flexible(
@@ -54,6 +54,8 @@ class _FAQExpansionPanelWidgetState extends State<FAQExpansionPanelWidget> {
                         vertical: padding16, horizontal: padding16),
                     child: Text(
                       widget.answer,
+                      style:
+                          bodyStyle?.copyWith(color: ColorConstants.graphite),
                     ),
                   ),
                 ),

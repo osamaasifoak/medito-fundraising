@@ -6,6 +6,7 @@ class StringConstants {
   static const String rewards = 'Rewards';
   static const String donateNow = 'Donate Now';
   static const String recentDonations = 'Recent Donations';
+  static const String donationTiersAndRewards =  'Donation Tiers and Rewards';
   static const String faq = 'FAQs';
   static const String amountRaised = 'Amount Raised';
   static const String submit = 'Submit';
