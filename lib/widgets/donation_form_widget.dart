@@ -19,13 +19,15 @@ class DonationFormWidget extends ConsumerStatefulWidget {
 class _DonationFormWidgetState extends ConsumerState<DonationFormWidget>
     with WidgetsBindingObserver {
   final GlobalKey<FormState> _formKey = GlobalKey<FormState>();
+  final _paymentIntentClientSecret = '<YOUR_PAYMENT_INTENT_CLIENT_SECRET>';
+  final _merchantDisplayName = 'Your App Name';
+  final _hintEmail = "xyz@medito.com";
+  final _hintDonationAmount = "0.0";
+  final List<String> currencies = ['USD', 'PKR', 'EUR', 'CAD'];
+  String selectedCurrency = 'USD';
+
   @override
   Widget build(BuildContext context) {
-    const paymentIntentClientSecret = '<YOUR_PAYMENT_INTENT_CLIENT_SECRET>';
-    const merchantDisplayName = 'Your App Name';
-    var hintEmail = "xyz@medito.com";
-    var hintDonationAmount = "0.0";
-
     return Form(
       key: _formKey,
       child: Column(
@@ -41,18 +43,26 @@ class _DonationFormWidgetState extends ConsumerState<DonationFormWidget>
           height12,
           _buildFieldTitle(StringConstants.enterYourEmail),
           TextFormField(
-            decoration: inputDecoration(hintText: hintEmail),
+            decoration: inputDecoration(hintText: _hintEmail),
             keyboardType: TextInputType.emailAddress,
             validator: ValidationUtils.validateEmail,
             onChanged: _handleEmailChanged,
           ),
           height12,
           _buildFieldTitle(StringConstants.enterDonationAmount),
-          TextFormField(
-            decoration: inputDecoration(hintText: hintDonationAmount),
-            keyboardType: TextInputType.number,
-            validator: ValidationUtils.validateDigit,
-            onChanged: _handleDonationChanged,
+          Row(
+            children: [
+              Flexible(
+                child: TextFormField(
+                  decoration: inputDecoration(hintText: _hintDonationAmount),
+                  keyboardType: TextInputType.number,
+                  validator: ValidationUtils.validateDigit,
+                  onChanged: _handleDonationChanged,
+                ),
+              ),
+              width12,
+              _buildCurrencyDropdown()
+            ],
           ),
           height12,
           _buildFieldTitle(StringConstants.messageToCommunity),
@@ -73,9 +83,9 @@ class _DonationFormWidgetState extends ConsumerState<DonationFormWidget>
               if (_formKey.currentState!.validate()) {
                 if (ref.read(donationProvider.notifier).validate()) {
                   await Stripe.instance.initPaymentSheet(
-                    paymentSheetParameters: const SetupPaymentSheetParameters(
-                      paymentIntentClientSecret: paymentIntentClientSecret,
-                      merchantDisplayName: merchantDisplayName,
+                    paymentSheetParameters: SetupPaymentSheetParameters(
+                      paymentIntentClientSecret: _paymentIntentClientSecret,
+                      merchantDisplayName: _merchantDisplayName,
                     ),
                   );
                   await Stripe.instance.presentPaymentSheet();
@@ -92,6 +102,31 @@ class _DonationFormWidgetState extends ConsumerState<DonationFormWidget>
     return Padding(
       padding: const EdgeInsets.only(left: padding12, bottom: padding8),
       child: Text(title),
+    );
+  }
+
+  Widget _buildCurrencyDropdown() {
+    return Container(
+      decoration: BoxDecoration(
+          borderRadius: BorderRadius.circular(borderRadius14),
+          color: ColorConstants.ebony),
+      padding: const EdgeInsets.symmetric(vertical: 3, horizontal: padding8),
+      child: DropdownButton(
+        value: selectedCurrency,
+        borderRadius: BorderRadius.circular(borderRadius14),
+        underline: const SizedBox(),
+        items: currencies.map<DropdownMenuItem<String>>((String value) {
+          return DropdownMenuItem<String>(
+            value: value,
+            child: Text(value),
+          );
+        }).toList(),
+        onChanged: (String? value) {
+          setState(() {
+            selectedCurrency = value ?? selectedCurrency;
+          });
+        },
+      ),
     );
   }
 
