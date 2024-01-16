@@ -76,3 +76,6 @@ This directory contains the provider classes that are provided in `main.dart`. T
 ### `lib/views/*`
 
 This directory contains widgets used to construct the the screen of the app.
+
+## Deployment
+* [Link 1](https://hrishikeshpathak.com/blog/flutter-web-hosting-cloudflare/)
