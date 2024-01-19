@@ -16,6 +16,11 @@ class _EmailFormExpansionPanelWidgetState
   bool _isExpanded = false;
   @override
   Widget build(BuildContext context) {
+    var bodyStyle = Theme.of(context).textTheme.bodyLarge?.copyWith(
+          fontSize: getDefaultBodyFontSize(context),
+          color: ColorConstants.walterWhite,
+        );
+
     return ExpansionPanelList(
       elevation: 1,
       expandedHeaderPadding: EdgeInsets.zero,
@@ -33,8 +38,11 @@ class _EmailFormExpansionPanelWidgetState
             child: EmailFormWidget(),
           ),
           headerBuilder: (BuildContext context, bool isExpanded) {
-            return const ListTile(
-              title: Text(StringConstants.isThereSomethingElse),
+            return ListTile(
+              title: Text(
+                StringConstants.isThereSomethingElse,
+                style: bodyStyle,
+              ),
             );
           },
           isExpanded: _isExpanded,
