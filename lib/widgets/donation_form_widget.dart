@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_stripe/flutter_stripe.dart';
 import 'package:meditofundraising/constants/colors/color_constants.dart';
+import 'package:meditofundraising/constants/strings/keys_constants.dart';
 import 'package:meditofundraising/constants/strings/string_constants.dart';
 import 'package:meditofundraising/constants/styles/widget_styles.dart';
 import 'package:meditofundraising/providers/donation_form_provider.dart';
@@ -19,7 +20,7 @@ class DonationFormWidget extends ConsumerStatefulWidget {
 class _DonationFormWidgetState extends ConsumerState<DonationFormWidget>
     with WidgetsBindingObserver {
   final GlobalKey<FormState> _formKey = GlobalKey<FormState>();
-  final _paymentIntentClientSecret = '<YOUR_PAYMENT_INTENT_CLIENT_SECRET>';
+  final _paymentIntentClientSecret = stripeSecretKey;
   final _merchantDisplayName = 'Your App Name';
   final _hintEmail = "xyz@medito.com";
   final _hintDonationAmount = "0.0";
