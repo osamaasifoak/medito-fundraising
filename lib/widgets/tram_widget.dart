@@ -2,6 +2,7 @@ import 'package:animated_text_kit/animated_text_kit.dart';
 import 'package:flutter/material.dart';
 import 'package:meditofundraising/constants/constants.dart';
 import 'package:meditofundraising/sample_data.dart';
+import 'package:meditofundraising/utils/responsive_utils.dart';
 import 'package:meditofundraising/widgets/widgets.dart';
 
 class TramWidget extends StatefulWidget {
@@ -15,6 +16,8 @@ class _TramWidgetState extends State<TramWidget> {
   @override
   Widget build(BuildContext context) {
     Size size = MediaQuery.of(context).size;
+    var tramMinHeight =
+        Responsive.isMobile(context) ? size.height * 0.15 : size.height * 0.1;
 
     return Container(
       width: size.width,
@@ -24,24 +27,26 @@ class _TramWidgetState extends State<TramWidget> {
       ),
       margin: const EdgeInsets.all(padding16),
       padding: const EdgeInsets.all(padding16),
-      constraints: const BoxConstraints(minHeight: 100),
+      constraints: BoxConstraints(minHeight: tramMinHeight),
       child: Row(
         mainAxisAlignment: MainAxisAlignment.center,
         children: [
-          AnimatedTextKit(
-            animatedTexts: recentDonations
-                .map(
-                  (e) => ScaleAnimatedText(
-                    getFormattedTramMessage(e),
-                    duration: const Duration(milliseconds: 5000),
-                    textAlign: TextAlign.center,
-                    textStyle: TextStyle(
-                        fontSize: getDefaultBodyFontSize(context),
-                        fontFamily: dmSans,
-                        color: ColorConstants.walterWhite),
-                  ),
-                )
-                .toList(),
+          Flexible(
+            child: AnimatedTextKit(
+              animatedTexts: recentDonations
+                  .map(
+                    (e) => ScaleAnimatedText(
+                      getFormattedTramMessage(e),
+                      duration: const Duration(milliseconds: 5000),
+                      textAlign: TextAlign.center,
+                      textStyle: TextStyle(
+                          fontSize: getDefaultBodyFontSize(context),
+                          fontFamily: dmSans,
+                          color: ColorConstants.walterWhite),
+                    ),
+                  )
+                  .toList(),
+            ),
           ),
         ],
       ),
