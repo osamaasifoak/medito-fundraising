@@ -17,6 +17,7 @@ class HomeView extends StatelessWidget {
               child: Column(
                 children: [
                   const HeaderWidget(),
+                  const TramWidget(),
                   _buildCampaignAndFundraising(context),
                   if (Responsive.isMobile(context))
                     _buildRecentDonationsWidget(),
@@ -31,7 +32,7 @@ class HomeView extends StatelessWidget {
                 ],
               ),
             ),
-            FooterWidget(),
+            const FooterWidget(),
           ],
         ),
       ),

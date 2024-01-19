@@ -10,6 +10,7 @@ class StringConstants {
   static const String faq = 'FAQs';
   static const String amountRaised = 'Amount Raised';
   static const String submit = 'Submit';
+  static const String donated = 'donated';
   static const String emailAddress = 'Email address';
   static const String campaignTitle = 'Medito Fundraising';
   static const String enterYourName = 'Enter your name';

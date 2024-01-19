@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:meditofundraising/constants/constants.dart';
+import 'package:meditofundraising/sample_data.dart';
 
 class RecentDonationsWidget extends StatefulWidget {
   const RecentDonationsWidget({super.key});
@@ -10,27 +11,6 @@ class RecentDonationsWidget extends StatefulWidget {
 
 class _RecentDonationsWidgetState extends State<RecentDonationsWidget> {
   final ScrollController _scrollController = ScrollController();
-  List<RecentDonation> recentDonations = [
-    RecentDonation(
-        donor: 'Romain',
-        amount: '\$50',
-        message: 'Donated to the wonderful community'),
-    RecentDonation(donor: 'Osama', amount: '\$40', message: 'Stay strong 💪'),
-    RecentDonation(
-        donor: 'Mike', amount: '\$30', message: 'Keep up the good work'),
-    RecentDonation(donor: 'Alex', amount: '\$1000', message: 'Woah!!'),
-    RecentDonation(donor: 'Steven', amount: '\$90', message: 'Sample message'),
-    RecentDonation(
-      donor: 'Will',
-      amount: '\$70',
-    ),
-    RecentDonation(donor: 'Arthur', amount: '\$100', message: 'Woah!!'),
-    RecentDonation(donor: 'Azim', amount: '\$80', message: 'Sample message'),
-    RecentDonation(
-      donor: 'Gareth',
-      amount: '\$70',
-    ),
-  ];
 
   @override
   void initState() {
@@ -138,7 +118,7 @@ class _RecentDonationsWidgetState extends State<RecentDonationsWidget> {
 
   Text _buildTitle(RecentDonation donation, TextStyle? titleStyle) {
     return Text(
-      '${donation.donor} donated ${donation.amount}',
+      '${donation.donor} ${StringConstants.donated} ${donation.amount}',
       style: titleStyle?.copyWith(
           color: ColorConstants.lightPurple, fontSize: fontSize16),
     );
